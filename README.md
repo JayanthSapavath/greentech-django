@@ -295,11 +295,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Mahzabin Chowdhury** 
 - **Rajat Yadav** 
 
-##  Contact
-
-- **Website**: [GreenTech Platform](http://127.0.0.1:8000/)
-- **Email**: contact@greentech.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
 
 ##  Acknowledgments
 
