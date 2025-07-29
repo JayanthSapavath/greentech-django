@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GreenTech{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=5">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .search-group .dropdown-toggle {
+            background: #fff !important;
+            border-color: #ced4da !important;
+            color: #212529;
+            border-right: none !important;
+            border-radius: 0.375rem 0 0 0.375rem !important;
+            height: 48px;
+            min-width: 110px;
+            box-shadow: none;
+        }
+        .search-group .form-control {
+            border-radius: 0 0 0 0 !important;
+            height: 48px;
+            box-shadow: none;
+        }
+        .search-group .btn-search {
+            border-radius: 0 0.375rem 0.375rem 0 !important;
+            height: 48px;
+            box-shadow: none;
+        }
+        .search-group .dropdown-toggle:after {
+            margin-left: 0.5em;
+        }
+        .footer {
+            background: #f8f9f4;
+            color: #111;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 3rem;
+        }
+        .footer h6 {
+            color: #009e3c;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+        .footer a {
+            color: #009e3c !important;
+            font-weight: 600;
+        }
+        .footer a:hover {
+            color: #005c1a !important;
+            text-decoration: underline;
+        }
+        .footer .small, .footer .text-muted {
+            color: #111 !important;
+            opacity: 1;
+        }
+        body { padding-bottom: 0; }
+    </style>
+</head>
+<body>
+<!-- Cookie Consent Banner (Pepe Jeans style, no image) -->
+<div id="cookieConsentBanner" class="position-fixed bottom-0 start-0 w-100" style="z-index: 2000; background: #fff; box-shadow: 0 -2px 16px rgba(0,0,0,0.08); border-top: 1px solid #e0e0e0;">
+  <div class="container py-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+    <div class="mb-3 mb-md-0" style="min-width: 220px;">
+      <strong class="d-block mb-1" style="font-size: 1.1rem; letter-spacing: 0.01em;">This website uses cookies</strong>
+      <span class="small">We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.</span>
+      <div class="mt-2">
+        <a href="#" class="text-primary small me-3">Show details <i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-md-row align-items-center gap-2">
+      <button type="button" class="btn btn-dark px-4" id="allowAllCookiesBtn">Allow all</button>
+      <button type="button" class="btn btn-outline-dark px-4" id="customizeCookiesBtn">Customize <i class="bi bi-chevron-right"></i></button>
+      <button type="button" class="btn btn-outline-dark px-4" id="denyCookiesBtn">Deny</button>
+    </div>
+  </div>
+</div>
+<!-- Session Timeout Toast -->
+<div id="sessionTimeoutToast" class="toast align-items-center text-bg-light border-0 position-fixed bottom-0 start-0 m-4" role="alert" aria-live="assertive" aria-atomic="true" style="z-index: 2100; min-width: 340px; max-width: 400px; display: none;">
+  <div class="toast-body">
+    <strong>Session is out</strong><br>
+    <span class="small">Do you want to continue your session?</span>
+    <div class="mt-3 d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-primary btn-sm" id="continueSessionBtn">Yes</button>
+      <button type="button" class="btn btn-outline-danger btn-sm" id="exitSessionBtn">Exit</button>
+    </div>
+  </div>
+</div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary mb-4 shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/">GreenTech</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link text-white" href="/brands/">Brands</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/events/">Events</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/blog/">Blog</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/about/">About</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/contact/">Contact</a></li>
+            </ul>
+            <form class="d-flex w-100" method="get" action="/search/" style="max-width: 600px; margin-left: 1rem;">
+                <div class="input-group w-100 search-group">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="searchFilterBtn">
+                        <span id="searchFilterLabel">Category</span>
+                    </button>
+                    <ul class="dropdown-menu" id="searchFilterMenu" style="max-height: 350px; overflow-y: auto; min-width: 250px;">
+                        <li><h6 class="dropdown-header">Categories</h6></li>
+                        {% for category in all_categories %}
+                        {% if category %}
+                        <li><a class="dropdown-item filter-category" href="#" data-value="category" data-query="{{ category }}">{{ category }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <input type="hidden" name="filter" id="searchFilterInput" value="category">
+                    <input class="form-control" type="search" name="query" id="searchQueryInput" placeholder="Search by brand or category..." aria-label="Search">
+                    <button class="btn btn-warning btn-search" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+            {% if user.is_authenticated %}
+                <div class="dropdown ms-2">
+                    <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if user.userprofile.avatar %}
+                            <img src="{{ user.userprofile.avatar.url }}" alt="Avatar" class="rounded-circle me-2" width="32" height="32" style="object-fit:cover;">
+                        {% else %}
+                            <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+                        {% endif %}
+                        Account
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                        <li><a class="dropdown-item" href="/profile/">Profile</a></li>
+                        <li><a class="dropdown-item" href="/profile/edit/">Settings</a></li>
+                        <li><a class="dropdown-item" href="/dashboard/">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="/history/">Recent Activity</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="post" action="/logout/" style="margin:0;">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <a class="btn btn-light ms-2" href="/login/">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% if messages %}
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;">
+            {% for message in messages %}
+            <div class="toast align-items-center text-bg-primary border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            toastElList.forEach(function(toastEl) {
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        });
+    </script>
+    {% endif %}
+    {% block content %}{% endblock %}
+</div>
+<footer class="footer mt-5 pt-5 pb-3" style="background: #36454f; color: #fff; border-top: 2px solid #a9a9a9;">
+    <div class="container">
+        <div class="row text-start">
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff !important;">About GreenTech</h6>
+                <ul class="list-unstyled small">
+                                                        <li><a href="/about/" class="text-light text-decoration-none" style="color: #ffffff !important;">Our Story</a></li>
+                    <li><a href="/team/" class="text-light text-decoration-none" style="color: #ffffff !important;">The Team</a></li>
+                    <li><a href="/about/" class="text-light text-decoration-none" style="color: #ffffff !important;">Our Mission</a></li>
+                    <li><a href="/about/" class="text-light text-decoration-none" style="color: #ffffff !important;">Sustainability</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff !important;">Shop Categories</h6>
+                <ul class="list-unstyled small">
+                                                        <li><a href="/brands/" class="text-light text-decoration-none" style="color: #ffffff !important;">Brands</a></li>
+                    <li><a href="/events/" class="text-light text-decoration-none" style="color: #ffffff !important;">Events</a></li>
+                    <li><a href="/blog/" class="text-light text-decoration-none" style="color: #ffffff !important;">Blog</a></li>
+                    <li><a href="/search/?filter=category&query=Accessories" class="text-light text-decoration-none" style="color: #ffffff !important;">Accessories</a></li>
+                    <li><a href="/search/?filter=category&query=Swimwear" class="text-light text-decoration-none" style="color: #ffffff !important;">Swimwear</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff !important;">Customer Service</h6>
+                <ul class="list-unstyled small">
+                                                        <li><a href="/contact/" class="text-light text-decoration-none" style="color: #ffffff !important;">Contact Us</a></li>
+                    <li><a href="#" class="text-light text-decoration-none" style="color: #ffffff !important;">Shipping Information</a></li>
+                    <li><a href="#" class="text-light text-decoration-none" style="color: #ffffff !important;">Returns</a></li>
+                    <li><a href="#" class="text-light text-decoration-none" style="color: #ffffff !important;">Privacy & Security</a></li>
+                    <li><a href="#" class="text-light text-decoration-none" style="color: #ffffff !important;">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff !important;">Stay Connected</h6>
+                <div class="mb-3">
+                                                        <a href="#" class="text-light me-2"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" class="text-light me-2"><i class="bi bi-twitter fs-5"></i></a>
+                    <a href="#" class="text-light me-2"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" class="text-light me-2"><i class="bi bi-youtube fs-5"></i></a>
+                </div>
+                <form class="d-flex" method="post" action="#">
+                    <input type="email" class="form-control form-control-sm me-2" placeholder="Email" style="max-width: 140px;">
+                    <button class="btn btn-light btn-sm" type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center small text-light">
+                <span>&copy; 2024 GreenTech. All rights reserved.</span>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        var menu = document.getElementById('searchFilterMenu');
+        var label = document.getElementById('searchFilterLabel');
+        var input = document.getElementById('searchFilterInput');
+        var queryInput = document.getElementById('searchQueryInput');
+        menu.querySelectorAll('a.filter-category').forEach(function(item) {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                label.textContent = this.textContent;
+                input.value = this.getAttribute('data-value');
+                queryInput.value = this.getAttribute('data-query');
+            });
+        });
+        // Show banner if not previously accepted/denied
+        if (!localStorage.getItem('greentech_cookie_consent_pepe')) {
+            document.getElementById('cookieConsentBanner').style.display = 'block';
+        } else {
+            document.getElementById('cookieConsentBanner').style.display = 'none';
+        }
+        document.getElementById('allowAllCookiesBtn').onclick = function() {
+            setCookie('greentech_cookie_consent', 'accepted', 365);
+            localStorage.setItem('greentech_cookie_consent_pepe', 'accepted');
+            document.getElementById('cookieConsentBanner').style.display = 'none';
+        };
+        document.getElementById('customizeCookiesBtn').onclick = function() {
+            setCookie('greentech_cookie_consent', 'customize', 365);
+            localStorage.setItem('greentech_cookie_consent_pepe', 'customize');
+            // Optionally keep the banner open or show a preferences modal
+        };
+        document.getElementById('denyCookiesBtn').onclick = function() {
+            setCookie('greentech_cookie_consent', 'denied', 365);
+            localStorage.setItem('greentech_cookie_consent_pepe', 'denied');
+            document.getElementById('cookieConsentBanner').style.display = 'none';
+        };
+        // Session timeout logic (5 min inactivity for demo)
+        var sessionTimeout = 5 * 60 * 1000; // 5 minutes
+        var timeoutHandle;
+        function showSessionTimeoutToast() {
+            document.getElementById('sessionTimeoutToast').style.display = 'block';
+            var sessionToast = new bootstrap.Toast(document.getElementById('sessionTimeoutToast'), { delay: 0 });
+            sessionToast.show();
+        }
+        function resetSessionTimeout() {
+            document.getElementById('sessionTimeoutToast').style.display = 'none';
+            if (timeoutHandle) clearTimeout(timeoutHandle);
+            timeoutHandle = setTimeout(showSessionTimeoutToast, sessionTimeout);
+        }
+        // Reset timer on user activity
+        ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(function(evt) {
+            document.addEventListener(evt, resetSessionTimeout, true);
+        });
+        resetSessionTimeout();
+        document.getElementById('continueSessionBtn').onclick = function() {
+            resetSessionTimeout();
+        };
+        document.getElementById('exitSessionBtn').onclick = function() {
+            window.location.href = '/logout/';
+        };
+    });
+</script>
+</body>
+</html> 

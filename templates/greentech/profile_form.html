@@ -1,0 +1,37 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Edit Profile{% endblock %}
+{% block content %}
+<h2>Edit Profile</h2>
+<form method="post" enctype="multipart/form-data" class="mx-auto" style="max-width: 500px;">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_username" class="form-label">Username</label>
+        {{ form.username }}
+    </div>
+    <div class="mb-3">
+        <label for="id_email" class="form-label">Email</label>
+        {{ form.email }}
+    </div>
+    <div class="mb-3">
+        <label for="id_avatar" class="form-label">Profile Picture</label>
+        {{ form.avatar }}
+    </div>
+    <div class="mb-3">
+        <label for="id_first_name" class="form-label">First Name</label>
+        {{ form.first_name }}
+    </div>
+    <div class="mb-3">
+        <label for="id_country" class="form-label">Country</label>
+        {{ form.country }}
+    </div>
+    <div class="mb-3">
+        <label for="id_gender" class="form-label">Gender</label>
+        {{ form.gender }}
+    </div>
+    <div class="mb-3">
+        <label for="id_bio" class="form-label">Bio / Interests</label>
+        {{ form.bio }}
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %} 

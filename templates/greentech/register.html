@@ -1,0 +1,231 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="card p-4 shadow-sm mx-auto" style="max-width: 600px;">
+    <h2 class="mb-4 text-center">Registration Form</h2>
+    
+    <!-- Messages Section -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <!-- Form Errors Section -->
+    {% if form.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Please correct the following errors:</strong>
+            <ul class="mb-0 mt-2">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    
+<form method="post">
+    {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="id_first_name" class="form-label">First Name:</label>
+                <input type="text" name="first_name" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}" id="id_first_name" value="{{ form.first_name.value|default:'' }}" required>
+                {% if form.first_name.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.first_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="id_username" class="form-label">Username:</label>
+                <input type="text" name="username" class="form-control {% if form.username.errors %}is-invalid{% endif %}" id="id_username" value="{{ form.username.value|default:'' }}" required>
+                {% if form.username.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="id_email" class="form-label">Email:</label>
+                <input type="email" name="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="id_email" value="{{ form.email.value|default:'' }}" required>
+                {% if form.email.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="id_password1" class="form-label">Password</label>
+                <input type="password" name="password1" class="form-control {% if form.password1.errors %}is-invalid{% endif %}" id="id_password1" required>
+                <small class="form-text text-muted">For your security, please use a strong, unique password that you haven't used elsewhere.</small>
+                {% if form.password1.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password1.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="id_password2" class="form-label">Repeat Password:</label>
+                <input type="password" name="password2" class="form-control {% if form.password2.errors %}is-invalid{% endif %}" id="id_password2" required>
+                {% if form.password2.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password2.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="id_country" class="form-label">Country:</label>
+                <select name="country" id="id_country" class="form-select {% if form.country.errors %}is-invalid{% endif %}" required>
+                    <option value="">Select Country</option>
+                    <option value="United States" {% if form.country.value == 'United States' %}selected{% endif %}>United States</option>
+                    <option value="Canada" {% if form.country.value == 'Canada' %}selected{% endif %}>Canada</option>
+                    <option value="United Kingdom" {% if form.country.value == 'United Kingdom' %}selected{% endif %}>United Kingdom</option>
+                    <option value="India" {% if form.country.value == 'India' %}selected{% endif %}>India</option>
+                    <option value="Australia" {% if form.country.value == 'Australia' %}selected{% endif %}>Australia</option>
+                    <option value="Other" {% if form.country.value == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+                {% if form.country.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.country.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Gender:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="Male" {% if form.gender.value == 'Male' %}checked{% endif %} required>
+                    <label class="form-check-label" for="gender_male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="Female" {% if form.gender.value == 'Female' %}checked{% endif %}>
+                    <label class="form-check-label" for="gender_female">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender_other" value="Other" {% if form.gender.value == 'Other' %}checked{% endif %}>
+                    <label class="form-check-label" for="gender_other">Other</label>
+                </div>
+                {% if form.gender.errors %}
+                    <div class="text-danger small">
+                        {% for error in form.gender.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Security Questions Section -->
+        <div class="card mb-3">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Security Questions (for password reset)</h5>
+                <small class="text-muted">Please set up two security questions. If you forget your password, you'll be asked one of these questions randomly.</small>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="id_security_question_1" class="form-label">Security Question 1:</label>
+                        <select name="security_question_1" id="id_security_question_1" class="form-select {% if form.security_question_1.errors %}is-invalid{% endif %}" required>
+                            <option value="">Select a security question</option>
+                            <option value="What was your first pet's name?" {% if form.security_question_1.value == "What was your first pet's name?" %}selected{% endif %}>What was your first pet's name?</option>
+                            <option value="In which city were you born?" {% if form.security_question_1.value == "In which city were you born?" %}selected{% endif %}>In which city were you born?</option>
+                            <option value="What is your mother's maiden name?" {% if form.security_question_1.value == "What is your mother's maiden name?" %}selected{% endif %}>What is your mother's maiden name?</option>
+                            <option value="What was the name of your first school?" {% if form.security_question_1.value == "What was the name of your first school?" %}selected{% endif %}>What was the name of your first school?</option>
+                            <option value="What is your favorite color?" {% if form.security_question_1.value == "What is your favorite color?" %}selected{% endif %}>What is your favorite color?</option>
+                            <option value="What is the name of your childhood best friend?" {% if form.security_question_1.value == "What is the name of your childhood best friend?" %}selected{% endif %}>What is the name of your childhood best friend?</option>
+                            <option value="What is your favorite movie?" {% if form.security_question_1.value == "What is your favorite movie?" %}selected{% endif %}>What is your favorite movie?</option>
+                            <option value="What is the name of the street you grew up on?" {% if form.security_question_1.value == "What is the name of the street you grew up on?" %}selected{% endif %}>What is the name of the street you grew up on?</option>
+                        </select>
+                        {% if form.security_question_1.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.security_question_1.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_security_answer_1" class="form-label">Answer to Question 1:</label>
+                        <input type="text" name="security_answer_1" class="form-control {% if form.security_answer_1.errors %}is-invalid{% endif %}" id="id_security_answer_1" value="{{ form.security_answer_1.value|default:'' }}" placeholder="Enter your answer" required>
+                        {% if form.security_answer_1.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.security_answer_1.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="id_security_question_2" class="form-label">Security Question 2:</label>
+                        <select name="security_question_2" id="id_security_question_2" class="form-select {% if form.security_question_2.errors %}is-invalid{% endif %}" required>
+                            <option value="">Select a security question</option>
+                            <option value="What was your first pet's name?" {% if form.security_question_2.value == "What was your first pet's name?" %}selected{% endif %}>What was your first pet's name?</option>
+                            <option value="In which city were you born?" {% if form.security_question_2.value == "In which city were you born?" %}selected{% endif %}>In which city were you born?</option>
+                            <option value="What is your mother's maiden name?" {% if form.security_question_2.value == "What is your mother's maiden name?" %}selected{% endif %}>What is your mother's maiden name?</option>
+                            <option value="What was the name of your first school?" {% if form.security_question_2.value == "What was the name of your first school?" %}selected{% endif %}>What was the name of your first school?</option>
+                            <option value="What is your favorite color?" {% if form.security_question_2.value == "What is your favorite color?" %}selected{% endif %}>What is your favorite color?</option>
+                            <option value="What is the name of your childhood best friend?" {% if form.security_question_2.value == "What is the name of your childhood best friend?" %}selected{% endif %}>What is the name of your childhood best friend?</option>
+                            <option value="What is your favorite movie?" {% if form.security_question_2.value == "What is your favorite movie?" %}selected{% endif %}>What is your favorite movie?</option>
+                            <option value="What is the name of the street you grew up on?" {% if form.security_question_2.value == "What is the name of the street you grew up on?" %}selected{% endif %}>What is the name of the street you grew up on?</option>
+                        </select>
+                        {% if form.security_question_2.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.security_question_2.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_security_answer_2" class="form-label">Answer to Question 2:</label>
+                        <input type="text" name="security_answer_2" class="form-control {% if form.security_answer_2.errors %}is-invalid{% endif %}" id="id_security_answer_2" value="{{ form.security_answer_2.value|default:'' }}" placeholder="Enter your answer" required>
+                        {% if form.security_answer_2.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.security_answer_2.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="terms" required>
+            <label class="form-check-label" for="terms">
+                I agree to the terms and conditions.
+            </label>
+        </div>
+        <button type="submit" class="btn btn-warning w-100">Register Now</button>
+</form>
+    
+    <div class="text-center mt-3">
+        <p class="mb-0">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login here</a></p>
+    </div>
+</div>
+{% endblock %} 

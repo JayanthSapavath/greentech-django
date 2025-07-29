@@ -1,0 +1,163 @@
+{% extends 'greentech/base.html' %}
+{% load custom_filters %}
+{% block title %}User Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Hello {{ user.first_name|default:user.username }}! 👋</h2>
+    
+    <!-- Visit Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        <i class="bi bi-calendar-day"></i> Visits Today
+                    </h5>
+                    <p class="display-6 text-primary">{{ visits_today }}</p>
+                    <small class="text-muted">Today's visits</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        <i class="bi bi-graph-up"></i> Total Visits
+                    </h5>
+                    <p class="display-6 text-primary">{{ total_visits }}</p>
+                    <small class="text-muted">Lifetime visits</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm border-info">
+                <div class="card-body">
+                    <h5 class="card-title text-info">
+                        <i class="bi bi-calendar-week"></i> Last 7 Days
+                    </h5>
+                    <p class="display-6 text-info">{{ last_7_days_visits }}</p>
+                    <small class="text-muted">Weekly activity</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm border-warning">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">
+                        <i class="bi bi-calendar-check"></i> Most Active Day
+                    </h5>
+                    <p class="display-6 text-warning">{{ most_visits }}</p>
+                    <small class="text-muted">Visits on {{ most_active_day|date:"M d, Y" }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="bi bi-clock-history"></i> Visit History
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Recent Visit History -->
+                    {% if recent_visits %}
+                    <div class="mt-3">
+                        <h6>Recent Visits:</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Logins</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for visit in recent_visits %}
+                                        <tr>
+                                            <td>{{ visit.login_date|date:"M d, Y" }}</td>
+                                            <td>
+                                                <span class="badge bg-primary">{{ visit.visit_count }}</span>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% else %}
+                        <p class="text-muted text-center">No visit history yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="bi bi-info-circle"></i> Account Statistics
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="mb-1"><strong>Member Since:</strong></p>
+                            <p class="text-muted">{{ user.date_joined|date:"M d, Y" }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="mb-1"><strong>Days Active:</strong></p>
+                            <p class="text-muted">{{ active_duration }} days</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="mb-1"><strong>First Visit:</strong></p>
+                            <p class="text-muted">{{ days_since_first_visit }} days ago</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="mb-1"><strong>Favorite Brands:</strong></p>
+                            <p class="text-muted">{{ favorite_brands|length }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Favorite Brands Section -->
+    <h4 class="mb-3">
+        <i class="bi bi-heart-fill text-danger"></i> Favorite Brands
+    </h4>
+    {% if favorite_brands %}
+    <div class="row">
+        {% for brand in favorite_brands %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm text-center border-primary">
+                {% if brand.card_image_url %}
+                <img src="{{ brand.card_image_url }}" class="card-img-top" alt="{{ brand.name }} image" style="max-height:120px; object-fit:cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ brand.name }}</h5>
+                    <p class="card-text">{{ brand.description|truncatewords:12 }}</p>
+                    <a href="{{ brand.website_url }}" class="btn btn-outline-success btn-sm" target="_blank">Visit Website</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center p-4">
+                <i class="bi bi-star text-secondary display-4 mb-2"></i><br>
+                <strong>No favorite brands yet.</strong><br>
+                Start exploring and add brands to your favorites!
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

@@ -1,0 +1,112 @@
+[
+  {
+    "model": "greentech.greenproduct",
+    "pk": 1,
+    "fields": {
+      "name": "Encircled Dress",
+      "description": "A versatile, sustainable dress from Encircled.",
+      "category": "Dresses",
+      "price": "120.00",
+      "brand": 3
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 2,
+    "fields": {
+      "name": "Kotn T-Shirt",
+      "description": "Soft, organic cotton t-shirt from Kotn.",
+      "category": "Tops",
+      "price": "35.00",
+      "brand": 1
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 3,
+    "fields": {
+      "name": "Tentree Hoodie",
+      "description": "Eco-friendly hoodie that plants trees.",
+      "category": "Outerwear",
+      "price": "75.00",
+      "brand": 2
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 4,
+    "fields": {
+      "name": "Franc Leggings",
+      "description": "Ethically made leggings from Franc.",
+      "category": "Bottoms",
+      "price": "60.00",
+      "brand": 4
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 5,
+    "fields": {
+      "name": "Londre Swimsuit",
+      "description": "Swimsuit made from recycled bottles.",
+      "category": "Swimwear",
+      "price": "95.00",
+      "brand": 5
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 6,
+    "fields": {
+      "name": "Pact Socks",
+      "description": "Organic cotton socks for the whole family.",
+      "category": "Accessories",
+      "price": "12.00",
+      "brand": 6
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 7,
+    "fields": {
+      "name": "Free Label Tank",
+      "description": "Size-inclusive tank top from Free Label.",
+      "category": "Tops",
+      "price": "40.00",
+      "brand": 7
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 8,
+    "fields": {
+      "name": "Frank and Oak Jeans",
+      "description": "Sustainable denim jeans.",
+      "category": "Bottoms",
+      "price": "80.00",
+      "brand": 8
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 9,
+    "fields": {
+      "name": "The Good Tee Shirt",
+      "description": "Fair trade organic cotton t-shirt.",
+      "category": "Tops",
+      "price": "30.00",
+      "brand": 9
+    }
+  },
+  {
+    "model": "greentech.greenproduct",
+    "pk": 10,
+    "fields": {
+      "name": "MATT & NAT Bag",
+      "description": "Vegan bag made from recycled materials.",
+      "category": "Accessories",
+      "price": "110.00",
+      "brand": 10
+    }
+  }
+] 

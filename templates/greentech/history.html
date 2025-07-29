@@ -1,0 +1,29 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Recently Viewed Brands{% endblock %}
+{% block content %}
+<h2 class="mb-4">Recently Viewed Brands</h2>
+{% if brands %}
+<div class="row">
+    {% for brand in brands %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            {% if brand.card_image_url %}
+            <img src="{{ brand.card_image_url }}" class="w-100" alt="{{ brand.name }} Card Image" style="max-height:160px; object-fit:cover; border-top-left-radius:0.5rem; border-top-right-radius:0.5rem;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ brand.name }}</h5>
+                <p class="card-text">{{ brand.description }}</p>
+                <a href="{{ brand.website_url }}" class="btn btn-primary" target="_blank">Visit Website</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info text-center p-4">
+    <i class="bi bi-clock-history display-4 mb-2"></i><br>
+    <strong>No recently viewed brands yet.</strong><br>
+    Start exploring brands to see your history here!
+</div>
+{% endif %}
+{% endblock %} 

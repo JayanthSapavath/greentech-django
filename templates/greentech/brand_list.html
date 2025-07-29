@@ -1,0 +1,39 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Sustainable Canadian Clothing Brands{% endblock %}
+{% block content %}
+<h2>Sustainable Canadian Clothing Brands</h2>
+<div class="row">
+    {% for brand in brands %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center position-relative">
+            {% if user.is_authenticated %}
+                {% if brand.id in wishlisted_ids %}
+                    <form method="post" action="{% url 'remove-from-wishlist' brand.id %}" class="position-absolute top-0 end-0 m-2" style="z-index:3;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light rounded-circle shadow-sm" data-bs-toggle="tooltip" data-bs-placement="left" title="Remove from Wishlist">
+                            <i class="bi bi-heart-fill" style="font-size: 1.3rem; color: #e91e63;"></i>
+                        </button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{% url 'add-to-wishlist' brand.id %}" class="position-absolute top-0 end-0 m-2" style="z-index:3;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light rounded-circle shadow-sm" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist">
+                            <i class="bi bi-heart" style="font-size: 1.3rem; color: #e91e63;"></i>
+                        </button>
+                    </form>
+                {% endif %}
+            {% endif %}
+            {% if brand.card_image_url %}
+            <img src="{{ brand.card_image_url }}" class="w-100" alt="{{ brand.name }} Card Image" style="max-height:160px; object-fit:cover; border-top-left-radius:0.5rem; border-top-right-radius:0.5rem;">
+            {% endif %}
+            <!-- Logo removed -->
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'brand-detail' brand.id %}" class="text-decoration-none text-dark">{{ brand.name }}</a></h5>
+                <p class="card-text">{{ brand.description }}</p>
+                <a href="{{ brand.website_url }}" class="btn btn-primary" target="_blank">Visit Website</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 

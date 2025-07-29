@@ -1,0 +1,69 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Eco Events - Sustainable Fashion Events in Canada{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-4">Sustainable Fashion Events in Canada</h1>
+            <p class="lead text-center mb-5">Discover upcoming eco-friendly fashion events, workshops, and conferences across Canada. Connect with sustainable fashion communities and learn about ethical fashion practices.</p>
+        </div>
+    </div>
+
+    {% if events %}
+        <div class="row">
+            {% for event in events %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title text-primary fw-bold">{{ event.title }}</h5>
+                            <span class="badge bg-dark text-white">{{ event.date|date:"M d" }}</span>
+                        </div>
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-geo-alt-fill text-primary me-1"></i>
+                            {{ event.location }}
+                        </p>
+                        <p class="card-text">{{ event.description|truncatewords:25 }}</p>
+                        <div class="mt-auto">
+                            <small class="text-muted">
+                                <i class="bi bi-calendar-event me-1"></i>
+                                {{ event.date|date:"F d, Y" }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <button class="btn btn-outline-primary btn-sm w-100">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="bi bi-calendar-x display-1 text-muted"></i>
+                    <h3 class="mt-3">No events found</h3>
+                    <p class="text-muted">Check back soon for upcoming sustainable fashion events!</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="bg-light rounded p-4 text-center">
+                <h4 class="text-primary mb-3">Want to Host an Event?</h4>
+                <p class="mb-3">Are you organizing a sustainable fashion event in Canada? Let us know and we'll feature it on our platform!</p>
+                <a href="/contact/" class="btn btn-primary">
+                    <i class="bi bi-envelope me-1"></i>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

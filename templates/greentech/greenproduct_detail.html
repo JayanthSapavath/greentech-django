@@ -1,0 +1,16 @@
+{% extends 'greentech/base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+<div class="card mb-4">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+    {% endif %}
+    <div class="card-body">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p><strong>Category:</strong> {{ product.category }}</p>
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <a href="/products/" class="btn btn-secondary">Back to Products</a>
+    </div>
+</div>
+{% endblock %} 

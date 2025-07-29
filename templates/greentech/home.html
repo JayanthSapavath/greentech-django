@@ -1,0 +1,88 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Welcome to GreenTech - Sustainable Fashion in Canada{% endblock %}
+{% block content %}
+<!-- Hero Section with Live Fashion Video Background -->
+<div class="container-fluid p-0 mb-5">
+    <div class="position-relative" style="min-height: 380px; max-height: 480px; overflow: hidden;">
+        <video autoplay loop muted playsinline class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover" style="object-fit: cover; min-height: 380px; max-height: 480px; z-index: 1; background: url('/static/hero.jpg') center/cover no-repeat;" poster="/static/hero.jpg">
+            <source src="https://cdn.coverr.co/videos/coverr-fashion-walk-1640/1080p.mp4" type="video/mp4">
+            <img src="/static/hero.jpg" alt="Nature" class="w-100 h-100" style="object-fit: cover; min-height: 380px; max-height: 480px;">
+        </video>
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(20, 30, 40, 0.45); z-index: 2;"></div>
+        <div class="position-absolute top-50 start-50 translate-middle text-center" style="z-index: 3; min-width: 320px;">
+            <h1 class="display-3 fw-bold text-white mb-3">Welcome to GreenTech</h1>
+            <p class="lead text-white mb-4">Discover Canada’s top sustainable clothing brands and join the movement for a greener future.</p>
+            <a href="/brands/" class="btn btn-primary btn-lg shadow">Explore Brands</a>
+        </div>
+    </div>
+</div>
+<!-- About/Mission Section -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <img src="/static/about.jpg" class="img-fluid rounded shadow" alt="About Sustainable Fashion">
+        </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-3">Why Choose Sustainable Clothing?</h2>
+            <p class="lead">Sustainable fashion is about more than just style—it's about making choices that are good for the planet and for people. Our featured brands use eco-friendly materials, ethical production, and fair labor practices to create clothing you can feel good about.</p>
+            <a href="/about/" class="btn btn-primary">Learn More</a>
+        </div>
+    </div>
+</div>
+<!-- How It Works / Benefits -->
+<div class="container mb-5">
+    <h2 class="text-center mb-4">How It Works</h2>
+    <div class="row text-center">
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <i class="bi bi-globe2 display-4 text-primary mb-3"></i>
+                <h5>Eco Materials</h5>
+                <p class="small">Brands use organic, recycled, and low-impact materials to reduce environmental harm.</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <i class="bi bi-people-fill display-4 text-primary mb-3"></i>
+                <h5>Ethical Production</h5>
+                <p class="small">Clothing is made in safe, fair-wage environments supporting workers’ rights.</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <i class="bi bi-arrow-repeat display-4 text-primary mb-3"></i>
+                <h5>Recycled Packaging</h5>
+                <p class="small">Packaging is minimal and made from recycled or biodegradable materials.</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <i class="bi bi-heart-fill display-4 text-primary mb-3"></i>
+                <h5>Community Impact</h5>
+                <p class="small">Brands give back to communities and support environmental initiatives.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Newsletter Signup -->
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="bg-primary text-white rounded p-4 text-center shadow">
+                <h3 class="fw-bold mb-2">Join Our Newsletter</h3>
+                <p class="mb-3">Get updates on new sustainable brands, eco tips, and exclusive offers.</p>
+                <form method="post" action="/newsletter/">
+                    {% csrf_token %}
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-12 col-md-8">
+                            <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <button type="submit" class="btn btn-light btn-lg w-100">Subscribe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

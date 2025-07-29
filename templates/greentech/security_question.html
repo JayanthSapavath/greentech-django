@@ -1,0 +1,58 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Security Question{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">Security Question</h2>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <p class="text-muted mb-3">
+                        Please answer your security question to continue with password reset.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <strong>Username:</strong> {{ username }}
+                    </div>
+                    
+                    <div class="mb-4">
+                        <strong>Security Question:</strong><br>
+                        <span class="text-primary">{{ question }}</span>
+                    </div>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="{{ form.answer.id_for_label }}" class="form-label">{{ form.answer.label }}</label>
+                            {{ form.answer }}
+                            {% if form.answer.errors %}
+                                <div class="text-danger small">
+                                    {% for error in form.answer.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Verify Answer</button>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <a href="{% url 'forgot_password' %}" class="btn btn-link">Back to Username</a>
+                        <a href="{% url 'login' %}" class="btn btn-link">Back to Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

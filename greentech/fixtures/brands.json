@@ -1,0 +1,222 @@
+[
+  {
+    "model": "greentech.brand",
+    "pk": 1,
+    "fields": {
+      "name": "Kotn",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/Kotn_Logo_200x.png",
+      "website_url": "https://kotn.com/",
+      "description": "Sustainable essentials ethically made from Egyptian cotton.",
+      "card_image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 2,
+    "fields": {
+      "name": "Tentree",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/tentree-logo_200x.png",
+      "website_url": "https://www.tentree.com/",
+      "description": "Earth-first apparel brand that plants ten trees for every item purchased.",
+      "card_image_url": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 3,
+    "fields": {
+      "name": "Encircled",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/encircled-logo_200x.png",
+      "website_url": "https://www.encircled.ca/",
+      "description": "Sustainable, versatile clothing made in Canada.",
+      "card_image_url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 4,
+    "fields": {
+      "name": "Franc",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/franc-logo_200x.png",
+      "website_url": "https://wearfranc.com/",
+      "description": "Everyday basics made ethically in Canada from sustainable fabrics.",
+      "card_image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 5,
+    "fields": {
+      "name": "Londre Bodywear",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/londre-logo_200x.png",
+      "website_url": "https://www.londrebodywear.com/",
+      "description": "Swimwear made from recycled plastic bottles.",
+      "card_image_url": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 6,
+    "fields": {
+      "name": "Pact",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/pact-logo_200x.png",
+      "website_url": "https://wearpact.ca/",
+      "description": "Organic cotton clothing for the whole family.",
+      "card_image_url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 7,
+    "fields": {
+      "name": "Free Label",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/free-label-logo_200x.png",
+      "website_url": "https://www.freelabel.com/",
+      "description": "Ethically made, size-inclusive clothing.",
+      "card_image_url": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 8,
+    "fields": {
+      "name": "Frank and Oak",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/frank-and-oak-logo_200x.png",
+      "website_url": "https://www.frankandoak.com/",
+      "description": "Sustainable fashion for men and women, designed in Canada.",
+      "card_image_url": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 9,
+    "fields": {
+      "name": "The Good Tee",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/the-good-tee-logo_200x.png",
+      "website_url": "https://thegoodtee.com/",
+      "description": "Fair trade organic cotton t-shirts.",
+      "card_image_url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 10,
+    "fields": {
+      "name": "MATT & NAT",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/matt-and-nat-logo_200x.png",
+      "website_url": "https://mattandnat.com/",
+      "description": "Vegan bags and accessories made from recycled materials.",
+      "card_image_url": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 11,
+    "fields": {
+      "name": "Patagonia",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Patagonia_Logo.png",
+      "website_url": "https://www.patagonia.com/",
+      "description": "Outdoor clothing and gear for the silent sports: climbing, surfing, skiing and snowboarding, fly fishing, and trail running.",
+      "card_image_url": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 12,
+    "fields": {
+      "name": "Everlane",
+      "logo_url": "https://seeklogo.com/images/E/everlane-logo-6B2B1B2B2B-seeklogo.com.png",
+      "website_url": "https://www.everlane.com/",
+      "description": "Modern basics. Radical transparency. Sustainable materials.",
+      "card_image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 13,
+    "fields": {
+      "name": "Veja",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Veja_Logo.png",
+      "website_url": "https://www.veja-store.com/",
+      "description": "Sustainable sneakers made with organic cotton, wild rubber, and recycled plastic bottles.",
+      "card_image_url": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 14,
+    "fields": {
+      "name": "Wuxly Movement",
+      "logo_url": "https://wuxly.com/cdn/shop/files/Wuxly_Logo_White_200x.png",
+      "website_url": "https://wuxly.com/",
+      "description": "Vegan outerwear made in Canada.",
+      "card_image_url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 15,
+    "fields": {
+      "name": "Miik",
+      "logo_url": "https://miik.ca/cdn/shop/files/miik-logo_200x.png",
+      "website_url": "https://miik.ca/",
+      "description": "Eco-friendly, Canadian-made women’s clothing.",
+      "card_image_url": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 16,
+    "fields": {
+      "name": "Eliza Faulkner",
+      "logo_url": "https://elizafaulkner.com/cdn/shop/files/ElizaFaulkner_Logo_200x.png",
+      "website_url": "https://elizafaulkner.com/",
+      "description": "Bold, feminine clothing designed and made in Montreal.",
+      "card_image_url": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 17,
+    "fields": {
+      "name": "Seek Collective",
+      "logo_url": "https://seekcollective.com/cdn/shop/files/SeekCollective_Logo_200x.png",
+      "website_url": "https://seekcollective.com/",
+      "description": "Artisan-made, sustainable clothing for women.",
+      "card_image_url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 18,
+    "fields": {
+      "name": "Reformation",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Reformation_logo.png",
+      "website_url": "https://www.thereformation.com/",
+      "description": "Sustainable women’s clothing and accessories.",
+      "card_image_url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 19,
+    "fields": {
+      "name": "Alice + Whittles",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/alice-whittles-logo_200x.png",
+      "website_url": "https://aliceandwhittles.com/",
+      "description": "Sustainable rain boots and accessories.",
+      "card_image_url": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+    }
+  },
+  {
+    "model": "greentech.brand",
+    "pk": 20,
+    "fields": {
+      "name": "MARY YOUNG",
+      "logo_url": "https://cdn.shopify.com/s/files/1/0075/0556/1310/files/mary-young-logo_200x.png",
+      "website_url": "https://maryyoung.com/",
+      "description": "Ethically made lingerie and loungewear.",
+      "card_image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+    }
+  }
+] 

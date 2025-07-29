@@ -1,0 +1,110 @@
+{% extends 'greentech/base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="mb-3">
+                <i class="bi bi-search"></i> Search Results
+                {% if query %}
+                    <small class="text-muted">for "{{ query }}"</small>
+                {% endif %}
+            </h2>
+            
+            <!-- Search Summary -->
+            {% if total_results > 0 %}
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i> Found {{ total_results }} result{{ total_results|pluralize }} for "{{ query }}"
+                    {% if filter == 'category' %}
+                        in the <strong>{{ query }}</strong> category
+                    {% elif filter == 'brand' %}
+                        for brand <strong>{{ query }}</strong>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Products Found Section -->
+    {% if results %}
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3">
+                <i class="bi bi-box"></i> Products Found
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        {% for product in results %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }} image" style="max-height:200px; object-fit:cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                    
+                    <!-- Brand Information with Link -->
+                    <div class="mb-2">
+                        <strong>Brand:</strong> 
+                        <a href="{% url 'brand-detail' product.brand.id %}" class="text-decoration-none">
+                            <span class="badge bg-primary">{{ product.brand.name }}</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Category Information with Link -->
+                    <div class="mb-2">
+                        <strong>Category:</strong> 
+                        <a href="{% url 'search' %}?filter=category&query={{ product.category }}" class="text-decoration-none">
+                            <span class="badge bg-info">{{ product.category }}</span>
+                        </a>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Price:</strong> 
+                        <span class="text-primary fw-bold">${{ product.price }}</span>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'product-detail' product.id %}" class="btn btn-primary btn-sm">
+                            <i class="bi bi-eye"></i> View Details
+                        </a>
+                        <a href="{% url 'brand-detail' product.brand.id %}" class="btn btn-outline-success btn-sm">
+                            <i class="bi bi-tag"></i> View Brand
+                        </a>
+                        <a href="{{ product.brand.website_url }}" class="btn btn-outline-primary btn-sm" target="_blank">
+                            <i class="bi bi-box-arrow-up-right"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- No Results Section -->
+    {% if total_results == 0 and query %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <i class="bi bi-exclamation-triangle display-4 text-warning mb-3"></i>
+                <h4>No results found for "{{ query }}"</h4>
+                <p class="mb-3">Try searching with different keywords or browse our categories:</p>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="d-flex flex-wrap gap-2 justify-content-center">
+                            <a href="{% url 'search' %}?filter=category&query=Bottoms" class="btn btn-outline-success">Bottoms</a>
+                            <a href="{% url 'search' %}?filter=category&query=Tops" class="btn btn-outline-success">Tops</a>
+                            <a href="{% url 'search' %}?filter=category&query=Dresses" class="btn btn-outline-success">Dresses</a>
+                            <a href="{% url 'search' %}?filter=category&query=Accessories" class="btn btn-outline-success">Accessories</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 
