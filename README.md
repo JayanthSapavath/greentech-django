@@ -20,12 +20,6 @@ GreenTech is a curated platform that brings together sustainable fashion brands 
 ###  Mission
 To transform the fashion industry through sustainable practices, ethical production, and innovative technology solutions.
 
-### Vision (2030)
-- Connect 1,000+ sustainable brands with 10 million+ conscious consumers
-- Achieve 100% circular fashion practices
-- Create a global community of 5 million+ sustainability advocates
-- Influence 25% of global fashion purchases to be sustainable
-
 ## Features
 
 ### E-commerce Features
